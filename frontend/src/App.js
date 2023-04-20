@@ -1,31 +1,24 @@
 import React from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
+import Header from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
 export default function App() {
 
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path='/' element={<Root/>}>
-        <Route index element={<Home/>}/>
-        <Route element={<Login/>}/>
-        <Route element={<Register/>}/>
-      </Route>
-    )
-  )
-
   return (
     <>
-      <RouterProvider router={router}/>
+      <BrowserRouter>
+      <div className='container'>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
+        </Routes>
+      </div>
+      </BrowserRouter> 
     </>
   );
-}
-
-function Root() {
-  return(
-    <div className='container'>
-    </div>
-  )
 }
